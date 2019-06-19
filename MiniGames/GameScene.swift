@@ -25,19 +25,27 @@ class GameScene: SKScene , SKPhysicsContactDelegate {
         // Required for SKPhysicsContactDelegate
         self.physicsWorld.contactDelegate = self
         
-        // make array of lemming
-//        let l1 = self.childNode(withName: "lemming1")
-//        let l2 = self.childNode(withName: "lemming2")
-//        let l3 = self.childNode(withName: "lemming3")
-//        let l4 = self.childNode(withName: "lemming4")
-//        self.lemmingArray.append(l1!)
-//        self.lemmingArray.append(l2!)
-//        self.lemmingArray.append(l3!)
-//        self.lemmingArray.append(l4!)
+        // make lemming
+        self.makeLemming()
     
     
     }
     
+    func makeLemming()
+    {
+        //add a lemming
+        let lem = SKSpriteNode(imageNamed: "right1")
+        
+        //generate a random(x,y) for lem
+        let randX = 100
+        let randY = 1050
+        
+        lem.position = CGPoint(x:randX, y:randY)
+        
+        addChild(lem)
+        
+        print("Where is lemming:\(randX),\(randY)")
+    }
     
     func makePlatform(xPosition:CGFloat, yPosition:CGFloat) {
         // 1. create an platform sprite
