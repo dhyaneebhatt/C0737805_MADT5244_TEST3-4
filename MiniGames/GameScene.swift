@@ -42,20 +42,7 @@ class GameScene: SKScene , SKPhysicsContactDelegate {
        // 3. apply sequence to sprite
        self.lem.run(SKAction.repeatForever(sequence))
     
-        if(a==100)
-        {
-            let a = -(self.size.width*2)
-            
-            let m1 = SKAction.moveBy(x: a, y: 0, duration: 3)
-            // --- 1b. move right
-            let m2 = SKAction.moveBy(x: b, y: 0, duration: 3)
-            
-            // 2. put actions into a sequence
-            let sequence = SKAction.sequence([m1,m2])
-            
-            // 3. apply sequence to sprite
-            self.lem.run(SKAction.repeatForever(sequence))
-        }
+     
     }
     
     func makeLemming()
