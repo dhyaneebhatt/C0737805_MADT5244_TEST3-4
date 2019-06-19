@@ -16,11 +16,12 @@ class GameScene: SKScene , SKPhysicsContactDelegate {
     // sprites
  
    // var lemmingArray:[SKNode] = []
-  
-    
+    let lem = SKSpriteNode(imageNamed: "right1")
+   
     override func didMove(to view: SKView) {
         print("This is level 1")
         self.nextLevelButton = self.childNode(withName: "nextLevelButton") as! SKLabelNode
+        
         
         // Required for SKPhysicsContactDelegate
         self.physicsWorld.contactDelegate = self
@@ -28,17 +29,43 @@ class GameScene: SKScene , SKPhysicsContactDelegate {
         // make lemming
         self.makeLemming()
     
+        let a = (self.size.width/2)
+        let b = self.size.width/2
+        
+       let m1 = SKAction.moveBy(x: a, y: 0, duration: 3)
+       // --- 1b. move right
+       let m2 = SKAction.moveBy(x: b, y: 0, duration: 3)
+       
+       // 2. put actions into a sequence
+       let sequence = SKAction.sequence([m1,m2])
+        
+       // 3. apply sequence to sprite
+       self.lem.run(SKAction.repeatForever(sequence))
     
+        if(a==100)
+        {
+            let a = -(self.size.width*2)
+            
+            let m1 = SKAction.moveBy(x: a, y: 0, duration: 3)
+            // --- 1b. move right
+            let m2 = SKAction.moveBy(x: b, y: 0, duration: 3)
+            
+            // 2. put actions into a sequence
+            let sequence = SKAction.sequence([m1,m2])
+            
+            // 3. apply sequence to sprite
+            self.lem.run(SKAction.repeatForever(sequence))
+        }
     }
     
     func makeLemming()
     {
         //add a lemming
-        let lem = SKSpriteNode(imageNamed: "right1")
+       // let lem = SKSpriteNode(imageNamed: "right1")
         
         //generate a random(x,y) for lem
-        let randX = 100
-        let randY = 1050
+        let randX = 440
+        let randY = 1020
         
         lem.position = CGPoint(x:randX, y:randY)
         
@@ -55,7 +82,7 @@ class GameScene: SKScene , SKPhysicsContactDelegate {
         // as where mouse is clicked
         platform.position.x = xPosition;
         platform.position.y = yPosition;
-        
+        print("Where is platform:\(xPosition),\(yPosition)")
         // 3. set physics for the platform
         // -- dyanmic = true
         // -- gravity = true
